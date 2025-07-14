@@ -2,6 +2,7 @@
 from ecmwfapi import ECMWFDataServer
 from datetime import datetime,timedelta
 from dateutil.relativedelta import relativedelta
+import numpy as np
 
 server = ECMWFDataServer()
 
