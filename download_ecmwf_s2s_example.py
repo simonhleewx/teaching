@@ -47,7 +47,7 @@ for d in range(1+ndays):
 for i in range(len(hdatelist)):
 
     date_get = datelist[i] # realtime forecast date
-    hdate_get = hdatelist[i] # hindcast date (can take range hdate_get-1, hdate_get-20)
+    hdate_get = hdatelist[i] # hindcast date (can take range date_get-1, date_get-20)
 
     print("RT DATE:",date_get)
     print("HC DATE:",hdate_get)
