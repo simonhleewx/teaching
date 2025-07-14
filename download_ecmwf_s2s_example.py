@@ -26,7 +26,7 @@ param_get = "131/156" # variables to download
 
 
 ## GET DATES ##
-first_fcst =datetime(2024,10,31) # first forecast date to get
+first_fcst =datetime(2024,11,11) # first forecast date to get
 last_fcst = datetime(2025,3,31) # last forecast to get
 ndays = (last_fcst-first_fcst).days # days between
 
@@ -34,12 +34,11 @@ datelist = [] # store string format dates of the realtime forecast
 hdatelist = [] # store string format dates of the hindcasts
 
 # loop through to get the dates
-for d in range(1+ndays):
-    next_date = first_fcst+timedelta(days=d)
-    if next_date.weekday() in [0,3]:
-        for y in range(1,21):
-            hdatelist.append((next_date-relativedelta(years=y)).strftime("%Y-%m-%d")) # hindcast dates, prev 20 y
-            datelist.append(datetime.strftime(next_date,"%Y-%m-%d")) # corresponding real time
+for d in np.arange(2,ndays+1,2):
+    next_date = first_fcst+timedelta(days=int(d))
+    for y in range(1,21):
+        hdatelist.append((next_date-relativedelta(years=y)).strftime("%Y-%m-%d")) # hindcast dates, prev 20 y
+        datelist.append(datetime.strftime(next_date,"%Y-%m-%d")) # corresponding real time
 
 
 ## LOOP TO DOWNLOAD
