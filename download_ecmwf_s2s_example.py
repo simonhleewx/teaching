@@ -34,13 +34,13 @@ ndays = (last_fcst-first_fcst).days # days between
 datelist = [] # store string format dates of the realtime forecast
 hdatelist = [] # store string format dates of the hindcasts
 
-# loop through to get the dates
-for d in np.arange(2,ndays+1,2):
+# loop through to get the dates - for cy49r1 this is every odd day (except 29 Feb)
+for d in np.arange(1,ndays+1):
     next_date = first_fcst+timedelta(days=int(d))
-    for y in range(1,21):
-        hdatelist.append((next_date-relativedelta(years=y)).strftime("%Y-%m-%d")) # hindcast dates, prev 20 y
-        datelist.append(datetime.strftime(next_date,"%Y-%m-%d")) # corresponding real time
-
+    if next_date.day%2!=0:
+        for y in range(1,21):
+            hdatelist.append((next_date-relativedelta(years=y)).strftime("%Y-%m-%d")) # hindcast dates, prev 20 y
+            datelist.append(datetime.strftime(next_date,"%Y-%m-%d")) # corresponding real time
 
 ## LOOP TO DOWNLOAD
 
